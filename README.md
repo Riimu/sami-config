@@ -25,7 +25,7 @@ Then you should create a file named `sami_config.php` in your project root direc
 ```php
 <?php
 
-return require __DIR__ . '/vendor/sami-config/config.php';
+return require __DIR__ . '/vendor/riimu/sami-config/config.php';
 ```
 
 The `sami_config.php` can now be used as the configuration for the documentation generator, e.g.

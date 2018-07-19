@@ -85,7 +85,7 @@ class SamiConfig
         $readme = file_get_contents($this->rootDirectory . '/README.md');
 
         if (!preg_match('/^#([^#\r\n]++)#?(\R|$)/', $readme, $match)) {
-            throw new RuntimeException('Could not parse a title from the README.md');
+            throw new \RuntimeException('Could not parse a title from the README.md');
         }
 
         return sprintf('%s API', trim($match[1]));
@@ -93,7 +93,8 @@ class SamiConfig
 
     private function getVersionCollection(): VersionCollection
     {
-        $collection = new class() extends GitVersionCollection {
+        $collection = new class($this->rootDirectory) extends GitVersionCollection {
+            /** @var bool */
             private $revert = false;
 
             public function valid(): bool
@@ -134,7 +135,7 @@ class SamiConfig
             throw new \RuntimeException('No stable versions exist to create documentation');
         }
 
-        usort($tags, function ($a, $b) {
+        usort($tags, function (string $a, string $b): int {
             return version_compare($a, $b);
         });
 
@@ -155,7 +156,10 @@ class SamiConfig
         return $match[1];
     }
 
-    private function clearDirectories(array $paths)
+    /**
+     * @param string[] $paths
+     */
+    private function clearDirectories(array $paths): void
     {
         foreach ($paths as $path) {
             if (file_exists($path)) {
