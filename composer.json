@@ -1,0 +1,30 @@
+{
+  "name": "riimu/sami-config",
+  "type": "library",
+  "description": "Automatic configuration provider for Sami documentation generator",
+  "keywords": [
+    "sami",
+    "documentation",
+    "config"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Riikka Kalliomäki",
+      "email": "riikka.kalliomaki@gmail.com",
+      "homepage": "http://riimu.net"
+    }
+  ],
+  "require": {
+    "php": "^7.1"
+  },
+  "require-dev": {
+    "riimu/php-cs-fixer-config": "^0.1.0",
+    "sami/sami": "^4.1.1"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Riimu\\PhpCsFixerConfig\\": "src/"
+    }
+  }
+}
